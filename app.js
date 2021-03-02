@@ -26,11 +26,43 @@ const itemSchema = {
 
 const Item = mongoose.model("Item", itemSchema);
 
+const item1 = new Item({
+    name: 'Praying',
+
+})
+const item2 = new Item({
+    name: 'Eating',
+
+})
+const item3 = new Item({
+    name: 'Dancing',
+
+})
+
+const defaultItem = [item1, item2, item3]
+
+
+
 app.get("/", function(req, res) {
     Item.find({}, (err, result) => {
-        // if (err) { console.log(err) }
-        console.log(err);
-        console.log(result);
+        if (result.length === 0) {
+            Item.insertMany(defaultItem, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('====================================');
+                    console.log('Items Successfully added to the DB');
+                    console.log('====================================');
+                }
+            })
+        } else {
+            console.log('====================================');
+            console.log('SUCCESS!');
+            console.log('====================================');
+            res.render("list", { listTitle: 'Today', newTasks: result });
+        }
+
+
     });
 });
 
@@ -38,16 +70,6 @@ app.get("/", function(req, res) {
 
 
 
-
-// app.get('/', (req, res) => {
-//     Item.find({}, (err, newTasks) => {
-
-//         console.log(newTasks);
-//         res.render('list', { listTitle: 'Today', newTasks: newTasks });
-
-//     })
-
-//     // res.render('list', { listTitle: 'Today', newTasks: items })
 // })
 app.post('/', (req, res) => {
 
@@ -82,6 +104,6 @@ app.get('/about', (req, res) => {
 
 
 
-app.listen(process.env.PORT || 3001, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log(`Local: http://localhost:3000`);
 });
