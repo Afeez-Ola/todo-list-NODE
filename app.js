@@ -73,15 +73,13 @@ app.get("/", function(req, res) {
 // })
 app.post('/', (req, res) => {
 
-    const item = req.body.newTask
+    // let itemName = ;
 
-    if (req.body.list === 'Work') {
-        workItems.push(item)
-        res.redirect('/work')
-    } else {
-        items.push(item)
-        res.redirect('/')
-    }
+    const itemName = new Item({
+        name: req.body.newTask
+    });
+
+    itemName.save();
 
 })
 
