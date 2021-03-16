@@ -46,7 +46,7 @@ const listSchema = {
     items: [itemSchema]
 };
 
-const List = mongoose.mode('List', listSchema);
+const List = mongoose.model('List', listSchema);
 
 app.get("/", function(req, res) {
     Item.find({}, (err, result) => {
@@ -113,10 +113,20 @@ app.post('/delete', (req, res) => {
 app.get('/:paramName', (req, res) => {
     const paramName = req.params.paramName;
 
-    const list = new List({
-        name: paramName,
-        items: defaultItem
-    });
+    List.findOne({ "name": paramName }, (err) => {
+        if (!err) {
+            console.log('name exists!');
+        } else {
+            const list = new List({
+                name: paramName,
+                items: defaultItem
+            });
+
+            list.save();
+        }
+    })
+
+
 });
 
 // app.get('/work', (req, res) => {
