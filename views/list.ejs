@@ -10,7 +10,7 @@
         <%   newTasks.forEach((newTask) => { %>
             <form action="/delete" method='POST'>
                 <div class="item">
-                    <input type="checkbox" name='checkbox' value="<%= newTask._id %>" onChange="this.form.submit()">
+                    <input type="checkbox" name='checkbox' value='<%= newTask._id %>' onChange="this.form.submit()">
                     <p>
                         <%=  newTask.name  %>
                     </p>

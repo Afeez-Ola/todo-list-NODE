@@ -113,9 +113,13 @@ app.post('/delete', (req, res) => {
 });
 
 
-app.get('/work', (req, res) => {
-    res.render('list', { listTitle: 'Work List', newTasks: workItems })
-})
+app.get('/:paramName', (req, res) => {
+    console.log(req.params.paramName);
+});
+
+// app.get('/work', (req, res) => {
+//     res.render('list', { listTitle: 'Work List', newTasks: workItems })
+// })
 
 app.post('/work', (req, res) => {
     const item = req.body.newTask;
