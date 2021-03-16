@@ -29,27 +29,24 @@ const Item = mongoose.model("Item", itemSchema);
 const item1 = new Item({
     name: 'Praying',
 
-})
+});
 const item2 = new Item({
     name: 'Eating',
 
-})
+});
 const item3 = new Item({
     name: 'Dancing',
 
-})
+});
 
-const defaultItem = [item1, item2, item3]
+const defaultItem = [item1, item2, item3];
 
-// Item.insertMany(defaultItem, (err) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log('====================================');
-//         console.log('Items Successfully added to the DB');
-//         console.log('====================================');
-//     }
-// })
+const listSchema = {
+    name: String,
+    item: [itemSchema]
+};
+
+const List = mongoose.mode('List', listSchema);
 
 app.get("/", function(req, res) {
     Item.find({}, (err, result) => {
@@ -86,7 +83,7 @@ app.post('/', (req, res) => {
 
     const item = new Item({
         name: itemName
-    })
+    });
 
     console.log(item);
 
@@ -95,7 +92,7 @@ app.post('/', (req, res) => {
     res.redirect('/');
 
 
-})
+});
 
 app.post('/delete', (req, res) => {
 
@@ -114,7 +111,7 @@ app.post('/delete', (req, res) => {
 
 
 app.get('/:paramName', (req, res) => {
-    console.log(req.params.paramName);
+    const paramName = req.params.paramName;
 });
 
 // app.get('/work', (req, res) => {
@@ -129,7 +126,7 @@ app.post('/work', (req, res) => {
 
 
 app.get('/about', (req, res) => {
-    res.render('about')
+    res.render('about');
 })
 
 
