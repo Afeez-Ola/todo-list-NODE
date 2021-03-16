@@ -109,9 +109,10 @@ app.post('/delete', (req, res) => {
             console.log('====================================');
             console.log('Item successfully deleted! ');
             console.log('====================================');
+            res.redirect('/')
         }
     })
-    res.redirect('/')
+
 });
 
 
