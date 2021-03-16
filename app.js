@@ -97,6 +97,23 @@ app.post('/', (req, res) => {
 
 })
 
+app.post('/delete', (req, res) => {
+    console.log(req.body.checkbox);
+
+    let itemId = req.body.checkbox
+
+    Item.findByIdAndRemove(itemId, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('====================================');
+            console.log('Item successfully deleted! ');
+            console.log('====================================');
+        }
+    })
+    res.redirect('/')
+});
+
 
 app.get('/work', (req, res) => {
     res.render('list', { listTitle: 'Work List', newTasks: workItems })

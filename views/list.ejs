@@ -8,12 +8,14 @@
 
     <div class="box">
         <%   newTasks.forEach((newTask) => { %>
-            <div class="item">
-                <input type="checkbox">
-                <p>
-                    <%=  newTask.name  %>
-                </p>
-            </div>
+            <form action="/delete" method='POST'>
+                <div class="item">
+                    <input type="checkbox" name='checkbox' value='<%= newTask._id %> ' onChange="this.form.submit()">
+                    <p>
+                        <%=  newTask.name  %>
+                    </p>
+                </div>
+            </form>
             <% } )%>
 
                 <form class="item" action="/" method="post">
