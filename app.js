@@ -43,7 +43,7 @@ const defaultItem = [item1, item2, item3];
 
 const listSchema = {
     name: String,
-    item: [itemSchema]
+    items: [itemSchema]
 };
 
 const List = mongoose.mode('List', listSchema);
@@ -112,6 +112,11 @@ app.post('/delete', (req, res) => {
 
 app.get('/:paramName', (req, res) => {
     const paramName = req.params.paramName;
+
+    const list = new List({
+        name: paramName,
+        items: defaultItem
+    });
 });
 
 // app.get('/work', (req, res) => {
