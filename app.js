@@ -41,7 +41,15 @@ const item3 = new Item({
 
 const defaultItem = [item1, item2, item3]
 
-
+// Item.insertMany(defaultItem, (err) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('====================================');
+//         console.log('Items Successfully added to the DB');
+//         console.log('====================================');
+//     }
+// })
 
 app.get("/", function(req, res) {
     Item.find({}, (err, result) => {
@@ -55,6 +63,7 @@ app.get("/", function(req, res) {
                     console.log('====================================');
                 }
             })
+            res.redirect('/');
         } else {
             console.log('====================================');
             console.log('SUCCESS!');
@@ -73,13 +82,17 @@ app.get("/", function(req, res) {
 // })
 app.post('/', (req, res) => {
 
-    // let itemName = ;
+    let itemName = req.body.newItem;
 
-    const itemName = new Item({
-        name: req.body.newTask
-    });
+    const item = new Item({
+        name: itemName
+    })
 
-    itemName.save();
+    console.log(item)
+
+    item.save();
+
+
 
 })
 
