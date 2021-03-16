@@ -88,11 +88,11 @@ app.post('/', (req, res) => {
         name: itemName
     })
 
-    console.log(item)
+    console.log(item);
 
     item.save();
 
-    res.redirect('/')
+    res.redirect('/');
 
 
 })
@@ -105,10 +105,10 @@ app.post('/delete', (req, res) => {
     Item.findByIdAndRemove(itemId, (err) => {
         if (!err) {
             console.log('Items successfully deleted!');
-            console.log(req.body.checkbox);
+            console.log(itemId);
             res.redirect('/');
         }
-    })
+    });
 
 });
 
