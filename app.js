@@ -92,6 +92,7 @@ app.post('/', (req, res) => {
 
     item.save();
 
+    res.redirect('/')
 
 
 })
