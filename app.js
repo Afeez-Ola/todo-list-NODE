@@ -80,17 +80,24 @@ app.get("/", function(req, res) {
 app.post('/', (req, res) => {
 
     let itemName = req.body.newItem;
+    const listName = req.body.list;
 
     const item = new Item({
         name: itemName
     });
 
-    console.log(item);
+    if (listName === 'Today') {
+        item.save();
+        res.redirect('/');
+    } else {
+        List.findOne({ name: listName }, (err, result) => {
 
-    item.save();
+            result.items.push(item);
+            result.save();
+            res.redirect('/' + listName);
 
-    res.redirect('/');
-
+        });
+    }
 
 });
 
@@ -113,36 +120,47 @@ app.post('/delete', (req, res) => {
 app.get('/:paramName', (req, res) => {
     const paramName = req.params.paramName;
 
-    List.findOne({ "name": paramName }, (err) => {
+    List.findOne({ name: paramName }, (err, result) => {
         if (!err) {
-            console.log('name exists!');
-        } else {
-            const list = new List({
-                name: paramName,
-                items: defaultItem
-            });
+            if (!result) {
 
-            list.save();
+                const list = new List({
+                    name: paramName,
+                    items: defaultItem
+                });
+
+                list.save();
+                res.redirect('/' + paramName);
+
+            } else {
+                console.log('name exists!');
+                res.render('list', { listTitle: result.name, newTasks: result.items })
+            }
         }
-    })
-
-
+    });
 });
+// const list = new List({
+//     name: paramName,
+//     items: defaultItem
+// });
+
+// list.save();
+
 
 // app.get('/work', (req, res) => {
 //     res.render('list', { listTitle: 'Work List', newTasks: workItems })
 // })
 
-app.post('/work', (req, res) => {
-    const item = req.body.newTask;
-    workItems.push(item)
-    res.redirect('/work')
-})
+// app.post('/work', (req, res) => {
+//     const item = req.body.newTask;
+//     workItems.push(item)
+//     res.redirect('/work')
+// })
 
 
 app.get('/about', (req, res) => {
     res.render('about');
-})
+});
 
 
 
