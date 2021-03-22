@@ -67,8 +67,6 @@ app.get("/", function(req, res) {
             console.log('====================================');
             res.render("list", { listTitle: 'Today', newTasks: result });
         }
-
-
     });
 });
 
@@ -80,20 +78,23 @@ app.get("/", function(req, res) {
 app.post('/', (req, res) => {
 
     let itemName = req.body.newItem;
-    const listName = req.body.list;
+    let listName = req.body.list;
 
     const item = new Item({
         name: itemName
     });
 
     if (listName === 'Today') {
+        console.log(`this is item: ${item}`)
         item.save();
         res.redirect('/');
     } else {
         List.findOne({ name: listName }, (err, result) => {
-
-            result.items.push(item);
-            result.save();
+            console.log(`this is listName: ${listName}`);
+            // result.items.push(item);
+            console.log(`This is result: ${result.items}`);
+            result.items.push(item)
+                // result.save();
             res.redirect('/' + listName);
 
         });
