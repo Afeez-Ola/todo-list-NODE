@@ -89,12 +89,12 @@ app.post('/', (req, res) => {
         item.save();
         res.redirect('/');
     } else {
-        List.findOne({ name: listName }, (err, result) => {
+        List.findOne({ name: listName }, function(err, result) {
             console.log(`this is listName: ${listName}`);
             // result.items.push(item);
             console.log(`This is result: ${result.items}`);
-            result.items.push(item)
-                // result.save();
+            // result.items.push(item)
+            // result.save();
             res.redirect('/' + listName);
 
         });
