@@ -77,8 +77,8 @@ app.get("/", function(req, res) {
 // })
 app.post('/', (req, res) => {
 
-    const itemName = req.body.newItem;
-    const listName = req.body.list;
+    let itemName = req.body.newItem;
+    let listName = req.body.list;
 
     const item = new Item({
         name: itemName
@@ -89,10 +89,10 @@ app.post('/', (req, res) => {
         item.save();
         res.redirect('/');
     } else {
-        List.findOne({ name: listName }, function(err, result) {
+        List.findOne({ name: listName }, (err, result) => {
             console.log(`this is listName: ${listName}`);
             // result.items.push(item);
-            console.log(result);
+            console.log(result.items);
             // result.items.push(item)
             // result.save();
             // res.redirect('/' + listName);
