@@ -95,7 +95,7 @@ app.post('/', (req, res) => {
             console.log(`This is result: ${result.items}`);
             // result.items.push(item)
             // result.save();
-            res.redirect('/' + listName);
+            // res.redirect('/' + listName);
 
         });
     }
