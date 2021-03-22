@@ -77,8 +77,8 @@ app.get("/", function(req, res) {
 // })
 app.post('/', (req, res) => {
 
-    let itemName = req.body.newItem;
-    let listName = req.body.list;
+    const itemName = req.body.newItem;
+    const listName = req.body.list;
 
     const item = new Item({
         name: itemName
