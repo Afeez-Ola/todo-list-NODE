@@ -8,8 +8,6 @@ const app = express();
 
 app.set("view engine", "ejs");
 
-// const items = ['Drink Coffee', 'Buy fye', 'Do Dishes'];
-// const workItems = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -89,7 +87,7 @@ app.post('/', (req, res) => {
         item.save();
         res.redirect('/');
     } else {
-        List.findOne({name: listName}, (err, result) => {
+        List.findOne({ name: listName }, (err, result) => {
             console.log(`this is listName: ${listName}`);
             // result.items.push(item);
             console.log(result);
