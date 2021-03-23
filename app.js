@@ -92,7 +92,7 @@ app.post('/', (req, res) => {
         List.findOne({ name: listName }, (err, result) => {
             console.log(`this is listName: ${listName}`);
             // result.items.push(item);
-            console.log(result.items);
+            console.log(result);
             // result.items.push(item)
             // result.save();
             // res.redirect('/' + listName);
