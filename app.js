@@ -93,7 +93,7 @@ app.post('/', (req, res) => {
             console.log(result);
             // result.items.push(item)
             // result.save();
-            // res.redirect('/' + listName);
+            res.redirect('/' + listName);
 
         });
     }
