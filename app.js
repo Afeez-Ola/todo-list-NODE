@@ -18,11 +18,11 @@ mongoose.connect("mongodb://localhost:27017/todo-listDB", {
     useUnifiedTopology: true,
 });
 
-const itemSchema = {
+let itemSchema = {
     name: String,
 };
 
-const Item = mongoose.model("Item", itemSchema);
+let Item = mongoose.model("Item", itemSchema);
 
 const item1 = new Item({
     name: 'Praying',
