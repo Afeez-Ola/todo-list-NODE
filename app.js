@@ -1,4 +1,4 @@
-// jshint esversion:6
+
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -18,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/todo-listDB", {
     useUnifiedTopology: true,
 });
 
-let itemSchema = {
+const  itemSchema = {
     name: String,
 };
 
