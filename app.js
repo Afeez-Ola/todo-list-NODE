@@ -18,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/todo-listDB", {
     useUnifiedTopology: true,
 });
 
-const  itemSchema = {
+const  taskSchema = {
     name: String,
 };
 
@@ -41,7 +41,7 @@ const defaultItem = [item1, item2, item3];
 
 const listSchema = {
     name: String,
-    items: [itemSchema]
+    items: [taskSchema]
 };
 
 const List = mongoose.model('List', listSchema);
